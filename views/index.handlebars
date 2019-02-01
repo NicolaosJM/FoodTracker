@@ -1,6 +1,7 @@
 <h1><i class="fas fa-carrot"></i>Food Diary<i class="fas fa-drumstick-bite"></i></h1>
-
+<br>
 <h2>Create a food diary to track your daily calorie intake.</h2>
+<br>
 <div class="container">
     <div class="row">
         <div class="col col-lg-5 col-sm-12">
@@ -9,14 +10,16 @@
                 <ul>
                     {{#each foodtable}}
                         {{#unless this.devoured}}
-                            <div class="col-s-10">
-                                <p class="mealNames">{{this.meal_name}} -> {{this.calorie_count}}</p>
+                            <div class="col-s-10 mealList">
+                                <p class="mealNames">{{this.meal_name}} - Calories: {{this.calorie_count}}</p>
+                                
                             </div>
-                            <div class="col-s-2">
-                                <form>            
+                            <form>            
                                     <input type="hidden" value="true" name="devoured" type="text">                                     {{!--  --}}
                                     <button type="submit" class="btn btn-warning change-devoured-state" data-id="{{id}}" data-devoured="{{devoured}}">Eaten</button>
                                 </form>
+                            <div class="col-s-2">
+                                
                             </div>
                         {{/unless}}
                     {{/each}}
@@ -39,7 +42,7 @@
     </div>
     <div class="row">
         <div class="col-s-12">
-            <form class="create-form">
+            <form class="create-form enterForm">
                 <div class="form-group">
                     <label for="meal">Add a meal: </label>
                     <input type="text" id="meal" name="meal_name">

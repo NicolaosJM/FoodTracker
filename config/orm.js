@@ -52,22 +52,25 @@ var orm = {
         });
     },
 
-    create: function (tableInput, columns, nameValues, calorieValues, callback) {
+    create: function (tableInput, columnNames, nameValues, calorieValues, callback) {
         var queryString = "INSERT INTO " + tableInput;
-
         queryString += " (";
-        queryString += columns.toString();
+        queryString += columnNames[0].toString() +", "+ columnNames[1].toString();
         queryString += ") ";
         queryString += "VALUES (";
-        queryString += printQuestionMarks(nameValues.length) + " , " + printQuestionMarks(calorieValues.length);
-        queryString += ") ";
+        queryString += "?, ?";
+        queryString += ");";
 
-        console.log(queryString);
+        console.log(queryString)
+        console.log("name values", nameValues)
+        console.log("calorie values", calorieValues)
+        
 
-        connection.query(queryString, nameValues, calorieValues, function(error, result) {
+        connection.query(queryString, [nameValues, calorieValues] , function(error, result) {
             if (error) {
                 throw error;
             }
+            console.log(result)
             callback(result);
         });
     }

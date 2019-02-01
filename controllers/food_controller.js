@@ -21,9 +21,11 @@ router.post("/api/create", function (request, response) {
     food.create([
         "meal_name",
         "calorie_count"
-    ], [
-        request.body.meal_name
-    ], function (result) {
+    ], 
+        request.body.meal_name,
+        request.body.calorie_count
+    , function (result) {
+        console.log(3)
         response.json({ id: result.insertId});
     });
 });
